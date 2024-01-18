@@ -4,9 +4,9 @@ import ProductCard from './components/ProductCard'
 
 export default function Home() {
   return (
-    <main className='text-black'>
+    <main>
       <h1>Hello World</h1>
-      <Link href='/users' className='text-black'>Users</Link>
+      <Link href='/users'>Users</Link>
       < ProductCard />
     </main>
   )
