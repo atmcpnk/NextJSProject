@@ -1,0 +1,6 @@
+/* dashed sytax does not work here in module.css, camelCase needs to be defined so that it works in JS/TS */
+.card {
+    padding: 1rem;
+    border: 1px solid #ccc;
+    color: black;
+}
