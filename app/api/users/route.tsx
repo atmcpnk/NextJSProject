@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import schema from './schema';
 
 // GET - getting data 
 // POST - creating data
@@ -18,7 +19,8 @@ export async function POST( request: NextRequest ) {
    // Validate
    // if invalid, return 400 error
    // else, return the data
-   if(!body.name)
-    return NextResponse.json({ error: 'name is required'}, { status: 400});
+   const validation = schema.safeParse(body);
+   if(!validation.success)
+    return NextResponse.json(validation.error.errors, { status: 400});
    return NextResponse.json({ id: 1, name: body.name }, { status: 201});
 }

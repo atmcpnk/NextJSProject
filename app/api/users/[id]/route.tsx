@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import schema from "../schema";
 
 export function GET(
     request: NextRequest, 
@@ -16,9 +17,10 @@ export async function PUT(
     { params }: { params: { id: number} }){
     // Validate the request body
     const body = await request.json();
-    if (!body.name)
+    const validation = schema.safeParse(body);
+    if (!validation.success)
     // if invalid, return 400 error
-        return NextResponse.json({error: "Name is required"}, { status: 400});
+        return NextResponse.json(validation.error.errors, { status: 400});
     // else, Fetch the user with the given id from the db
     if (params.id > 10)
     // if doesn't exist, return 404 error
